@@ -52,6 +52,30 @@ class GameWrapper {
             layer3: snake length >= player {0,1}
             layer4: food {0,1}
             layer5: gameboard {0,1}
+            layer6: utility (THIS LAYER IS NOT FULLY FILLED. SEE NEXT COMMENT!!!)
+        */
+        /* Utility Layer Info
+        The Utility Layer includes auxiliary information that is not in the board state format. 
+        
+        This currently are:
+            * distance to left border
+            * distance to right border
+            * distance to top border
+            * distance to down border
+            * min floodfill after left
+            * min floodfill after right
+            * min floodfill after top
+            * min floodfill after down
+            * current turn
+            * is left possible?
+            * is right possible?
+            * is top possible?
+            * is down possible?
+
+        The following infos could be included aswell:
+            * Influence on the board after action.
+            * Last N moves of self
+            * Last N moves of enemy (if seen)
         */
         auto& players = std::get<1>(gamestate);
         Tile head;
