@@ -63,11 +63,19 @@ class GameWrapper {
         auto assign = [this, model_i, env_i, head, ori](const Tile& xy, unsigned l, uint8_t val) {
             int x = (int(xy.first) - int(head.first)) * ((ori&1)?-1:1);
             int y = (int(xy.second) - int(head.second)) * ((ori&2)?-1:1);
+            int manhattanDistance = abs(x) + abs(y);
+
+            if (manhattanDistance > 5) {
+                // If the position is further away than a Manhattan distance of 5, set value to zero
+                val = 0;
+            }
+
             x += (LAYER_WIDTH/2);
             y += (LAYER_HEIGHT/2);
-            if( x > 0 && x < LAYER_WIDTH && y > 0 && y < LAYER_HEIGHT)
+
+            if( x >= 0 && x < LAYER_WIDTH && y >= 0 && y < LAYER_HEIGHT)
                 obss_[ model_i*(n_envs_*OBS_SIZE) + env_i*OBS_SIZE + x*(LAYER_HEIGHT*NUM_LAYERS) + y*NUM_LAYERS + l] = val;
-        };
+            };
 
         unsigned playersize = it->second.body_.size();
         for(const auto& p: players) {
