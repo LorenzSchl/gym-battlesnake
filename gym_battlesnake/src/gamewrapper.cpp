@@ -76,6 +76,8 @@ class GameWrapper {
             * Influence on the board after action.
             * Last N moves of self
             * Last N moves of enemy (if seen)
+
+        This workaround with the addidtional board-sized extra layer was chosen, as implementing it properly would be to much work. LOL!
         */
         auto& players = std::get<1>(gamestate);
         Tile head;
