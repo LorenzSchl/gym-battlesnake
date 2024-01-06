@@ -15,6 +15,7 @@
 #define LAYER_WIDTH 39
 #define LAYER_HEIGHT 39
 #define OBS_SIZE NUM_LAYERS * LAYER_WIDTH * LAYER_HEIGHT
+#define VIEW_RADIUS 5
 
 struct info {
     unsigned health_;
@@ -65,7 +66,7 @@ class GameWrapper {
             int y = (int(xy.second) - int(head.second)) * ((ori&2)?-1:1);
             int manhattanDistance = abs(x) + abs(y);
 
-            if (manhattanDistance > 5) {
+            if (manhattanDistance > VIEW_RADIUS) {
                 // If the position is further away than a Manhattan distance of 5, set value to zero
                 val = 0;
             }
